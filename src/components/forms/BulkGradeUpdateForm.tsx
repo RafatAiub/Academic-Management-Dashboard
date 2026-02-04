@@ -52,12 +52,12 @@ const BulkGradeUpdateForm: React.FC<BulkGradeUpdateFormProps> = ({
     useEffect(() => {
         if (selectedCourse) {
             const courseId = parseInt(selectedCourse, 10);
-            const entries: GradeEntry[] = enrolledStudents.map((student) => {
+            const entries: GradeEntry[] = enrolledStudents.map((student, index) => {
                 const existingGrade = existingGrades.find(
                     (g) => g.studentId === student.id && g.courseId === courseId
                 );
                 return {
-                    id: Math.random().toString(36).substr(2, 9),
+                    id: `grade-${index}`,
                     studentId: student.id,
                     score: existingGrade?.score.toString() || '',
                     grade: existingGrade?.grade || '',
@@ -162,14 +162,14 @@ const BulkGradeUpdateForm: React.FC<BulkGradeUpdateFormProps> = ({
                                                 <td className="px-4 py-3">
                                                     <span
                                                         className={`px-3 py-1 rounded-full text-sm font-semibold ${entry.grade
-                                                                ? entry.grade.startsWith('A')
-                                                                    ? 'bg-emerald-100 text-emerald-700'
-                                                                    : entry.grade.startsWith('B')
-                                                                        ? 'bg-blue-100 text-blue-700'
-                                                                        : entry.grade.startsWith('C')
-                                                                            ? 'bg-yellow-100 text-yellow-700'
-                                                                            : 'bg-red-100 text-red-700'
-                                                                : 'bg-gray-100 text-gray-400'
+                                                            ? entry.grade.startsWith('A')
+                                                                ? 'bg-emerald-100 text-emerald-700'
+                                                                : entry.grade.startsWith('B')
+                                                                    ? 'bg-blue-100 text-blue-700'
+                                                                    : entry.grade.startsWith('C')
+                                                                        ? 'bg-yellow-100 text-yellow-700'
+                                                                        : 'bg-red-100 text-red-700'
+                                                            : 'bg-gray-100 text-gray-400'
                                                             }`}
                                                     >
                                                         {entry.grade || '-'}

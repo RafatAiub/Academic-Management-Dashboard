@@ -54,9 +54,9 @@ const CourseForm: React.FC<CourseFormProps> = ({
 
     const [errors, setErrors] = useState<FormErrors>({});
     const [facultySelections, setFacultySelections] = useState<{ id: string; value: string }[]>(
-        course?.facultyIds.map((id) => ({
-            id: Math.random().toString(36).substr(2, 9),
-            value: id.toString(),
+        course?.facultyIds.map((val, index) => ({
+            id: `faculty-${index}`,
+            value: val.toString(),
         })) || []
     );
 

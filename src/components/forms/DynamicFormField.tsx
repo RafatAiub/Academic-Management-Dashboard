@@ -36,6 +36,9 @@ interface DynamicFormFieldProps {
     helper?: string;
 }
 
+let fieldCounter = 0;
+const generateId = () => `field-${fieldCounter++}`;
+
 const DynamicFormField: React.FC<DynamicFormFieldProps> = ({
     label,
     values,
@@ -47,7 +50,6 @@ const DynamicFormField: React.FC<DynamicFormFieldProps> = ({
     error,
     helper,
 }) => {
-    const generateId = () => Math.random().toString(36).substr(2, 9);
 
     const handleAdd = () => {
         if (values.length < maxFields) {
@@ -113,7 +115,7 @@ const DynamicFormField: React.FC<DynamicFormFieldProps> = ({
     };
 
     return (
-        <div className="form-group">
+        <div className="form-group" >
             <label className="form-label">{label}</label>
 
             <div className="space-y-3">
@@ -143,11 +145,12 @@ const DynamicFormField: React.FC<DynamicFormFieldProps> = ({
                     <Plus className="h-4 w-4" />
                     {addButtonLabel}
                 </button>
-            )}
+            )
+            }
 
             {error && <p className="form-error mt-2">{error}</p>}
             {helper && !error && <p className="form-helper mt-2">{helper}</p>}
-        </div>
+        </div >
     );
 };
 
