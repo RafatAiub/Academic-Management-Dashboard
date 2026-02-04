@@ -45,8 +45,8 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
     const [toasts, setToasts] = useState<Toast[]>([]);
     const [isMounted, setIsMounted] = useState(false);
 
-    // Use useEffect to ensure portal only renders on client after hydration
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIsMounted(true);
     }, []);
 
@@ -55,7 +55,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
     }, []);
 
     const showToast = useCallback((toast: Omit<Toast, 'id'>) => {
-        const id = Math.random().toString(36).substr(2, 9);
+        const id = Math.random().toString(36).substring(2, 11);
         const newToast: Toast = { ...toast, id };
         setToasts((prev) => [...prev, newToast]);
 

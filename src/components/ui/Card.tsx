@@ -18,9 +18,9 @@ interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
     action?: React.ReactNode;
 }
 
-interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement> { }
+type CardBodyProps = React.HTMLAttributes<HTMLDivElement>;
 
-interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> { }
+type CardFooterProps = React.HTMLAttributes<HTMLDivElement>;
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
     ({ className, variant = 'default', hover = true, children, ...props }, ref) => {
