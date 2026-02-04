@@ -65,8 +65,7 @@ export default function FacultyPage() {
                 setStudents(studentsData);
                 setCourses(coursesData);
                 setGrades(gradesData);
-            } catch (err) {
-                console.error('Error fetching data:', err);
+            } catch {
                 error('Failed to load data');
             } finally {
                 setIsLoading(false);
@@ -74,6 +73,7 @@ export default function FacultyPage() {
         };
 
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -146,7 +146,7 @@ export default function FacultyPage() {
 
             setIsBulkAssignOpen(false);
             success(`${studentIds.length} students assigned successfully`);
-        } catch (err) {
+        } catch {
             error('Failed to assign students');
         } finally {
             setIsSubmitting(false);
@@ -187,7 +187,7 @@ export default function FacultyPage() {
             setGrades(updatedGrades);
             setIsBulkGradeOpen(false);
             success(`${gradeUpdates.length} grades updated successfully`);
-        } catch (err) {
+        } catch {
             error('Failed to update grades');
         } finally {
             setIsSubmitting(false);
@@ -201,7 +201,7 @@ export default function FacultyPage() {
             setGrades((prev) => [...prev, newGrade]);
             setIsAddGradeOpen(false);
             success('Grade added successfully');
-        } catch (err) {
+        } catch {
             error('Failed to add grade');
         } finally {
             setIsSubmitting(false);

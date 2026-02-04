@@ -63,8 +63,7 @@ export default function StudentsPage() {
                 ]);
                 setStudents(studentsData);
                 setCourses(coursesData);
-            } catch (err) {
-                console.error('Error fetching data:', err);
+            } catch {
                 error('Failed to load students');
             } finally {
                 setIsLoading(false);
@@ -72,6 +71,7 @@ export default function StudentsPage() {
         };
 
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Open create modal if action=create in URL
@@ -128,8 +128,7 @@ export default function StudentsPage() {
             setIsCreateModalOpen(false);
             success('Student created successfully');
             router.push('/students');
-        } catch (err) {
-            console.error('Create student error:', err);
+        } catch {
             error('Failed to create student');
         } finally {
             setIsSubmitting(false);
@@ -146,8 +145,7 @@ export default function StudentsPage() {
             );
             setEditingStudent(null);
             success('Student updated successfully');
-        } catch (err) {
-            console.error('Update student error:', err);
+        } catch {
             error('Failed to update student');
         } finally {
             setIsSubmitting(false);
@@ -162,8 +160,7 @@ export default function StudentsPage() {
             setStudents((prev) => prev.filter((s) => s.id !== deletingStudent.id));
             setDeletingStudent(null);
             success('Student deleted successfully');
-        } catch (err) {
-            console.error('Delete student error:', err);
+        } catch {
             error('Failed to delete student');
         } finally {
             setIsSubmitting(false);

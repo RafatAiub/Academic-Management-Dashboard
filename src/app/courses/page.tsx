@@ -63,8 +63,7 @@ export default function CoursesPage() {
                 ]);
                 setCourses(coursesData);
                 setFaculty(facultyData);
-            } catch (err) {
-                console.error('Error fetching data:', err);
+            } catch {
                 error('Failed to load courses');
             } finally {
                 setIsLoading(false);
@@ -72,6 +71,7 @@ export default function CoursesPage() {
         };
 
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Open create modal if action=create in URL
@@ -139,7 +139,7 @@ export default function CoursesPage() {
             setIsCreateModalOpen(false);
             success('Course created successfully');
             router.push('/courses');
-        } catch (err) {
+        } catch {
             error('Failed to create course');
         } finally {
             setIsSubmitting(false);
@@ -156,7 +156,7 @@ export default function CoursesPage() {
             );
             setEditingCourse(null);
             success('Course updated successfully');
-        } catch (err) {
+        } catch {
             error('Failed to update course');
         } finally {
             setIsSubmitting(false);
@@ -171,7 +171,7 @@ export default function CoursesPage() {
             setCourses((prev) => prev.filter((c) => c.id !== deletingCourse.id));
             setDeletingCourse(null);
             success('Course deleted successfully');
-        } catch (err) {
+        } catch {
             error('Failed to delete course');
         } finally {
             setIsSubmitting(false);

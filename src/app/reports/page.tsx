@@ -50,8 +50,7 @@ export default function ReportsPage() {
                 setCourses(coursesData);
                 setGrades(gradesData);
                 setEnrollmentHistory(historyData);
-            } catch (err) {
-                console.error('Error fetching data:', err);
+            } catch {
                 error('Failed to load reports');
             } finally {
                 setIsLoading(false);
@@ -59,6 +58,7 @@ export default function ReportsPage() {
         };
 
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Filter options
